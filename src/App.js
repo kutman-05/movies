@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/header";
+import Home from "./components/Home";
+import Popular from "./components/popular";
+import TopRated from "./components/Toprated";
+import Detal from "./components/filmsDetal'";
+import { useState } from "react";
+import Search from "./components/Search";
 
 function App() {
+  const [fuson, setFuson] = useState("");
+
+  console.log(fuson);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        background:
+          "url(https://img.freepik.com/premium-vector/modern-abstract-gradient-background-with-dynamic-geometric-shapes_6091-1264.jpg) no-repeat center/cover",
+      }}
+      className="App"
+    >
+      <Header fuson={fuson} setFuson={setFuson} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/popular" element={<Popular />} />
+        <Route path="/toprated" element={<TopRated />} />
+        <Route path="/detal" element={<Detal />} />
+        <Route path="/search/:searchName" element={<Search />} />
+      </Routes>
     </div>
   );
 }
